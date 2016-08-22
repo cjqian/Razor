@@ -17,6 +17,7 @@ namespace Microsoft.AspNetCore.Razor.Compilation.TagHelpers
         private string _tagName;
         private string _typeName;
         private string _assemblyName;
+        private Dictionary<string, string> _propertyBag;
         private IEnumerable<TagHelperAttributeDescriptor> _attributes =
             Enumerable.Empty<TagHelperAttributeDescriptor>();
         private IEnumerable<TagHelperRequiredAttributeDescriptor> _requiredAttributes = Enumerable.Empty<TagHelperRequiredAttributeDescriptor>();
@@ -200,5 +201,24 @@ namespace Microsoft.AspNetCore.Razor.Compilation.TagHelpers
         /// tag helper.
         /// </summary>
         public TagHelperDesignTimeDescriptor DesignTimeDescriptor { get; set; }
+
+        public Dictionary<string, string> PropertyBag
+        {
+            get
+            {
+                return _propertyBag;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    _propertyBag = new Dictionary<string, string>();
+                } else
+                {
+                    _propertyBag = value;
+                }
+            }
+        }
     }
 }

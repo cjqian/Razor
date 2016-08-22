@@ -48,6 +48,7 @@ namespace Microsoft.AspNetCore.Razor.CodeGenerators
                       .WriteLine("\"");
             }
 
+            DecorateChunks(Context, Tree.Children);
             using (writer.BuildNamespace(Context.RootNamespace))
             {
                 // Write out using directives
@@ -82,10 +83,21 @@ namespace Microsoft.AspNetCore.Razor.CodeGenerators
                             csharpCodeVisitor.Accept(Tree.Children);
                         }
                     }
+
+                    // Add private view component tag helper classes. 
+                    BuildAfterExecuteContent(writer, Tree.Children);
                 }
             }
 
             return new CodeGeneratorResult(writer.GenerateCode(), writer.LineMappingManager.Mappings);
+        }
+
+        protected virtual void BuildAfterExecuteContent(CSharpCodeWriter writer, IList<Chunk> chunks)
+        {
+        }
+
+        protected virtual void DecorateChunks(CodeGeneratorContext context, IList<Chunk> chunks)
+        {
         }
 
         protected virtual CSharpCodeVisitor CreateCSharpCodeVisitor(

@@ -711,7 +711,7 @@ namespace Microsoft.AspNetCore.Razor.Runtime.TagHelpers
         /// ONE1TWO2THREE3 => one1two2three3
         /// First_Second_ThirdHi => first_second_third-hi
         /// </example>
-        private static string ToHtmlCase(string name)
+        public static string ToHtmlCase(string name)
         {
             return HtmlCaseRegex.Replace(name, HtmlCaseRegexReplacement).ToLowerInvariant();
         }
