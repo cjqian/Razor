@@ -329,7 +329,7 @@ namespace Microsoft.AspNetCore.Razor.CodeGenerators
                 .Write(" {")
                 .Write(" get; ")
                 .Write(" set; ")
-                .Write("} ")
+                .Write("}")
                 .WriteLine();
         }
 
